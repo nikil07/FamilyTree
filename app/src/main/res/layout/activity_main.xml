@@ -16,8 +16,15 @@
     <EditText
         android:id="@+id/et_age"
         android:layout_width="wrap_content"
+        android:inputType="number"
         android:layout_height="wrap_content"
         android:hint="Age" />
+
+    <Button
+    android:id="@+id/bt_add"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Add" />
 
     <Button
         android:id="@+id/bt_show"
