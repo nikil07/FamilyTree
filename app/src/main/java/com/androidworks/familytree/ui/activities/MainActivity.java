@@ -23,7 +23,7 @@ import butterknife.BindView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "NIK";
+    private static final String TAG = "TAG";
     @BindView(R.id.et_name)
     EditText name;
     @BindView(R.id.et_age)
