@@ -4,8 +4,11 @@ public class Member {
 
     private String name;
     private String nickName;
-    private int age;
+    private int birthYear;
+    private int deathYear;
     private String location;
+    private int generation;
+    private boolean isDead;
 
     public String getName() {
         return name;
@@ -23,12 +26,20 @@ public class Member {
         this.nickName = nickName;
     }
 
-    public int getAge() {
-        return age;
+    public int getBirthYear() {
+        return birthYear;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setBirthYear(int birthYear) {
+        this.birthYear = birthYear;
+    }
+
+    public int getDeathYear() {
+        return deathYear;
+    }
+
+    public void setDeathYear(int deathYear) {
+        this.deathYear = deathYear;
     }
 
     public String getLocation() {
@@ -37,5 +48,21 @@ public class Member {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public int getGeneration() {
+        return generation;
+    }
+
+    public void setGeneration(int generation) {
+        this.generation = generation;
+    }
+
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public void setDead(boolean dead) {
+        isDead = dead;
     }
 }
