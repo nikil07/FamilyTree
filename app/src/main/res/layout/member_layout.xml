@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/member_background"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/tv_member_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text="name"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/tv_member_nick_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="nick name"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/tv_member_birth_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_member_name"
+        android:layout_marginTop="10dp"
+        android:text="birth year"
+        android:textSize="25sp" />
+
+</RelativeLayout>

@@ -15,7 +15,7 @@
         <activity android:name=".ui.activities.MainActivity">
 
         </activity>
-        <activity android:name=".ui.activities.UploadActivity">
+        <activity android:name=".ui.activities.TreeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
