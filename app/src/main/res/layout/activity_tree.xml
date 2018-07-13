@@ -10,7 +10,15 @@
     <com.androidworks.familytree.ui.customviews.TreeLayout
         android:id="@+id/tree_layout"
         android:layout_width="wrap_content"
+        android:visibility="gone"
         android:layout_height="wrap_content"
         />
+
+    <de.blox.treeview.TreeView
+        android:id="@+id/treeView"
+        app:useMaxSize="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </de.blox.treeview.TreeView>
 
 </RelativeLayout>

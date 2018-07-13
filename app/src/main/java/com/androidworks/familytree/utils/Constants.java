@@ -6,5 +6,6 @@ package com.androidworks.familytree.utils;
 public interface Constants {
 
     String SHARED_PREF_MEMBERS = "SHARED_PREF_MEMBERS";
+    String ROOT_NODE_MEMBER = "Ananthanarayanan";
 }
 
