@@ -75,19 +75,19 @@ public class TreeActivity extends AppCompatActivity {
 
 
         // example tree
-        TreeNode rootNode = new TreeNode(getNodeText());
-        rootNode.addChild(new TreeNode(getNodeText()));
-        final TreeNode child3 = new TreeNode(getNodeText());
-        child3.addChild(new TreeNode(getNodeText()));
-        final TreeNode child6 = new TreeNode(getNodeText());
-        child6.addChild(new TreeNode(getNodeText()));
-        child6.addChild(new TreeNode(getNodeText()));
-        child3.addChild(child6);
-        rootNode.addChild(child3);
-        final TreeNode child4 = new TreeNode(getNodeText());
-        child4.addChild(new TreeNode(getNodeText()));
-        child4.addChild(new TreeNode(getNodeText()));
-        rootNode.addChild(child4);
+//        TreeNode rootNode = new TreeNode(getNodeText());
+//        rootNode.addChild(new TreeNode(getNodeText()));
+//        final TreeNode child3 = new TreeNode(getNodeText());
+//        child3.addChild(new TreeNode(getNodeText()));
+//        final TreeNode child6 = new TreeNode(getNodeText());
+//        child6.addChild(new TreeNode(getNodeText()));
+//        child6.addChild(new TreeNode(getNodeText()));
+//        child3.addChild(child6);
+//        rootNode.addChild(child3);
+//        final TreeNode child4 = new TreeNode(getNodeText());
+//        child4.addChild(new TreeNode(getNodeText()));
+//        child4.addChild(new TreeNode(getNodeText()));
+//        rootNode.addChild(child4);
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -110,19 +110,18 @@ public class TreeActivity extends AppCompatActivity {
     private void initViews() {
         ArrayList<Member> members = convertToList(DataStore.getInstance(this).getMembersJSON());
         TreeNode rootNode = new TreeNode(Constants.ROOT_NODE_MEMBER);
+        TreeNode firstGenNode = null;
 
         for (int i = 0; i < members.size(); i++) {
             Member member = members.get(i);
             switch (member.getGeneration()) {
                 case 1:
-                    rootNode.addChild(new TreeNode(member));
+                    firstGenNode = new TreeNode(member);
+                    rootNode.addChild(firstGenNode);
                     break;
                 case 2:
                     final TreeNode child3 = new TreeNode(member);
-                    child3.addChild(new TreeNode(member));
-                    final TreeNode child6 = new TreeNode(member);
-                    child6.addChild(child3);
-                    rootNode.addChild(child6);
+                    firstGenNode.addChild(child3);
                     break;
                 case 3:
                     break;
@@ -139,7 +138,6 @@ public class TreeActivity extends AppCompatActivity {
                     Log.d(TAG, "Gen 1");
                     break;
             }
-            rootNode.addChild(new TreeNode(member));
         }
         adapter.setRootNode(rootNode);
     }
