@@ -1,8 +1,8 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_width="250dp"
+    android:layout_height="80dp"
     android:layout_gravity="center"
     android:padding="5dp"
     card_view:cardBackgroundColor="@android:color/holo_blue_dark"
@@ -10,7 +10,7 @@
     card_view:contentPadding="8dp">
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
@@ -25,8 +25,10 @@
         <TextView
             android:id="@+id/tv_member_nick_name"
             android:layout_width="wrap_content"
+            android:ellipsize="marquee"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:text="nick name"
             android:textSize="15sp" />
 
         <TextView

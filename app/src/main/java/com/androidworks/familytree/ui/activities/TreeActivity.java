@@ -1,12 +1,10 @@
 package com.androidworks.familytree.ui.activities;
 
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.TextView;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 
 import com.androidworks.familytree.R;
 import com.androidworks.familytree.data.DataStore;
@@ -29,7 +27,6 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.blox.treeview.AlgorithmFactory;
 import de.blox.treeview.BaseTreeAdapter;
 import de.blox.treeview.TreeNode;
 import de.blox.treeview.TreeView;
@@ -40,13 +37,13 @@ public class TreeActivity extends AppCompatActivity {
     DatabaseReference myRef;
     FirebaseStorage storage;
     FirebaseDatabase database;
-    @BindView(R.id.tree_layout)
-    TreeLayout treeLayout;
     @BindView(R.id.treeView)
     TreeView treeView;
     private Gson gson = new Gson();
     private int nodeCount = 0;
     BaseTreeAdapter adapter;
+    private ScaleGestureDetector mScaleGestureDetector;
+    private float mScaleFactor = 1.0f;
     final private String TAG = "NIK";
 
     @Override
@@ -55,9 +52,14 @@ public class TreeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tree);
         ButterKnife.bind(this);
         init();
-
+        mScaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
         adapter = new TreeAdapter(this, R.layout.node);
         treeView.setAdapter(adapter);
+    }
+
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        mScaleGestureDetector.onTouchEvent(motionEvent);
+        return true;
     }
 
     private String getNodeText() {
@@ -121,7 +123,9 @@ public class TreeActivity extends AppCompatActivity {
                     break;
                 case 2:
                     final TreeNode child3 = new TreeNode(member);
-                    firstGenNode.addChild(child3);
+                    if (firstGenNode != null) {
+                        firstGenNode.addChild(child3);
+                    }
                     break;
                 case 3:
                     break;
@@ -143,7 +147,17 @@ public class TreeActivity extends AppCompatActivity {
     }
 
     public ArrayList<Member> convertToList(String JSON) {
-        return gson.fromJson(JSON, new TypeToken<ArrayList<Member>>() {
-        }.getType());
+        return gson.fromJson(JSON, new TypeToken<ArrayList<Member>>() {}.getType());
+    }
+
+    private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+        @Override
+        public boolean onScale(ScaleGestureDetector scaleGestureDetector){
+            mScaleFactor *= scaleGestureDetector.getScaleFactor();
+            mScaleFactor = Math.max(0.1f,Math.min(mScaleFactor, 10.0f));
+            treeView.setScaleX(mScaleFactor);
+            treeView.setScaleY(mScaleFactor);
+            return true;
+        }
     }
 }
